@@ -1,12 +1,12 @@
 package text
 
-type depDescribe struct {
+type DepDescribe struct {
 	Dep  string
 	Node string
 }
 
-func defineData() *[]depDescribe {
-	return &[]depDescribe{
+func DefineData() *[]DepDescribe {
+	return &[]DepDescribe{
 		{"P", "G"},
 		{"X", "V"},
 		{"H", "R"},

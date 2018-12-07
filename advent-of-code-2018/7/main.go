@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bittelc/advent-of-code-2018/text"
+	"github.com/bittelc/advent-of-code-2018/7/text"
 	"log"
 )
 
@@ -11,6 +11,6 @@ type depMap struct {
 }
 
 func main() {
-	depSimple := text.defineData()
+	depSimple := text.DefineData()
 	log.Println("depSimple:\n", depSimple)
 }
