@@ -32,25 +32,27 @@ FINDER:
 			if len(deps) == 0 {
 				candidates = append(candidates, node)
 				log.Println("node, candidates:", node, candidates)
+				delete(tree, node)
 			}
 		}
 		solutionString = solutionString + fmt.Sprintf("%v", candidates) + "|"
-			
+
 		for node, deps := range tree {
-				for _, candidate := range candidates {
-					if contains(deps, candidate) {
-						log.Printf("%v has dependency on %v from its list: %v", , node, depsWithNode)
-						i := indexOf(node, depsWithNode)
-						log.Println("i =", i)
-						depsWithNode := append(depsWithNode[:i], depsWithNode[i+1:]...)
-						tree[nodeWithNode] = depsWithNode
-						log.Printf("%v doesn't have dep on %v list:        %v", nodeWithNode, node, depsWithNode)
-					}
+			for _, candidate := range candidates {
+				if contains(deps, candidate) {
+					log.Printf("%v has dependency on %v from its list: %v", node, candidate, tree[node])
+					i := indexOf(candidate, deps)
+					log.Println("i =", i)
+					log.Println("deps preremoval=  ", deps)
+					deps := remove(deps, i)
+					log.Println("deps postremoval= ", deps)
+					tree[node] = deps
+					log.Printf("%v doesn't have dep on %v list:        %v", node, candidate, tree[node])
 				}
 			}
 		}
 
-		if len(solutionString) > 60 {
+		if len(solutionString) > 100 {
 			for v, k := range tree {
 				log.Printf("%v:%v\n", v, k)
 			}
@@ -76,4 +78,8 @@ func indexOf(word string, data []string) int {
 		}
 	}
 	return -1
+}
+
+func remove(slice []string, i int) []string {
+	return append(slice[:i], slice[i+1:]...)
 }
