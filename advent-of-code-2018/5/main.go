@@ -3,17 +3,22 @@ package main
 import (
 	"io/ioutil"
 	"log"
+	"strings"
 )
 
 func main() {
-	bigassstring, err := ioutil.ReadFile("text.txt")
+	bigAssString, err := ioutil.ReadFile("text.txt")
 	if err != nil {
 		log.Println("err =", err)
 	}
-
-	for iter, _ := range bigassstring {
-		if bigassstring[iter] == bigassstring[iter+1]+32 || bigassstring[iter] == bigassstring[iter+1]+32 {
-			log.Println("iter, lastLetter, letter =", iter, string(bigassstring[iter+1]), string(bigassstring[iter]))
+	for iter := 0; iter < len(bigAssString)-2; iter++ {
+		if bigAssString[iter] == bigAssString[iter+1]+32 || bigAssString[iter] == bigAssString[iter+1]-32 {
+			bigAssString = append(bigAssString[:iter], bigAssString[iter+2:]...)
+			iter = iter - 2
+			if iter < -1 {
+				iter = -1
+			}
 		}
 	}
+	log.Println(len(strings.TrimSpace(string(bigAssString))))
 }
