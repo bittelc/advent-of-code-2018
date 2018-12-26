@@ -45,6 +45,7 @@ func structify(line string) *Chars {
 	chars := &Chars{CloseBots: 0}
 	var err error
 	comp := strings.Split(line, ",")
+	comp = strings.TrimSpace(comp)
 	x := strings.TrimPrefix(comp[0], "pos=<")
 	chars.X, err = strconv.Atoi(x)
 	if err != nil {
