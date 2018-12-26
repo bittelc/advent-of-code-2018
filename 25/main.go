@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-var filename = "example_3.txt"
+var filename = "input.txt"
 
 type Star struct {
 	X, Y, Z, T int
